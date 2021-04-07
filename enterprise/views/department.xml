@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+
+    <record model="ir.ui.view" id="department_tree">
+      <field name="name">enterprise.department.tree</field>
+      <field name="model">enterprise.department</field>
+      <field name="arch" type="xml">
+        <tree string="Department">
+            <field name="name"/>
+            <field name="code_dep"/>
+            <field name="employee_uid"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="department_form">
+      <field name="name">Enterprise.department.form</field>
+      <field name="model">enterprise.department</field>
+      <field name="arch" type="xml">
+        <form string="Department">
+            <group>
+                <field name="name"/>
+                <field name="code_dep"/>
+                <field name="employee_uid"/>
+            </group>
+        </form>
+      </field>
+    </record>
+ </data>
+</odoo>

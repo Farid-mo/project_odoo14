@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+
+    <record model="ir.ui.view" id="enterprise_client_tree_view">
+      <field name="name">Enterprise client list</field>
+      <field name="model">enterprise.client</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="f_name"/>
+          <field name="l_name"/>
+          <field name="gender"/>
+          <field name="age"/>
+          <field name="phone"/>
+          <field name="email"/>
+          <field name="password" password="True"/>
+          <field name="employee_uid"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="enterprise_client_form_view">
+      <field name="name">Enterprise client form_list</field>
+      <field name="model">enterprise.client</field>
+      <field name="arch" type="xml">
+        <form>
+          <group>
+              <field name="f_name"/>
+              <field name="l_name"/>
+              <field name="gender"/>
+              <field name="age"/>
+              <field name="d_birth"/>
+              <field name="phone"/>
+              <field name="email"/>
+              <field name="password" password="True"/>
+              <field name="employee_uid"/>
+
+          </group>
+        </form>
+      </field>
+    </record>
+
+  </data>
+</odoo>
+

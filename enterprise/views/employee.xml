@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+
+    <record model="ir.ui.view" id="Employee_tree">
+      <field name="name">enterprise.employee.tree</field>
+      <field name="model">enterprise.employee</field>
+      <field name="arch" type="xml">
+        <tree string="Employee">
+            <field name="f_name"/>
+            <field name="l_name"/>
+            <field name="gender"/>
+            <field name="d_birth"/>
+            <field name="age"/>
+            <field name="phone"/>
+            <field name="date_start"/>
+            <field name="time_working"/>
+            <field name="salary"/>
+            <field name="email"/>
+            <field name="password" password="True"/>
+            <field name="job_uid"/>
+            <field name="client_uid"/>
+            <field name="department_id"/>
+
+
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="Employee_search">
+      <field name="name">enterprise.employee.search</field>
+      <field name="model">enterprise.employee</field>
+      <field name="arch" type="xml">
+        <search string="Employee search">
+            <field name="f_name" filter_domain ="['|', ('f_name','ilike',self),('email', 'ilike', self)]"/>
+            <field name="f_name"/>
+            <field name="l_name"/>
+            <field name="email"/>
+            <field name="phone"/>
+            <separator/>
+            <filter string="Male" name="male" domain="[('gender','=','Male')]"/>
+            <filter string="Female" name="female" domain="[('gender','=','Female')]"/>
+            <group expand="0" string="Group By">
+                <filter string="Department" name="department" context="{'group_by':'department_id'}"/>
+                <filter string="Salary" name="salary" context="{'group_by':'salary'}"/>
+                <filter string="Date start" name="date start" context="{'group_by':'date_start'}"/>
+            </group>
+        </search>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="Employee_form">
+      <field name="name">Enterprise.employee.form</field>
+      <field name="model">enterprise.employee</field>
+      <field name="arch" type="xml">
+        <form string="Employee">
+            <group>
+                <field name="f_name"/>
+                <field name="l_name"/>
+                <field name="gender"/>
+                <field name="d_birth"/>
+                <field name="age"/>
+                <field name="phone"/>
+                <field name="date_start"/>
+                <field name="time_working"/>
+                <field name="salary"/>
+            </group>
+            <group>
+                <field name="email"/>
+                <field name="password" password="True"/>
+            </group>
+            <group>
+                <field name="job_uid"/>
+                <field name="department_id"/>
+                <field name="client_uid"/>
+            </group>
+        </form>
+      </field>
+    </record>
+ </data>
+</odoo>

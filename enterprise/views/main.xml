@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+<!--        action of patient-->
+    <record id="enterprise_client_action" model="ir.actions.act_window">
+         <field name="name">Clients</field>
+         <field name="type">ir.actions.act_window</field>
+         <field name="res_model">enterprise.client</field>
+         <field name="view_mode">tree,form,kanban</field>
+         <field name="help" type="xml">
+             <p class="o_view_nocontent_smiling_face">
+                 Create your first patient!
+             </p>
+         </field>
+    </record>
+
+    <record id="enterprise_employee_action" model="ir.actions.act_window">
+         <field name="name">Employee</field>
+         <field name="type">ir.actions.act_window</field>
+         <field name="res_model">enterprise.employee</field>
+         <field name="view_mode">tree,form,kanban</field>
+         <field name="help" type="xml">
+             <p class="o_view_nocontent_smiling_face">
+                 Create your first patient!
+             </p>
+         </field>
+    </record>
+
+    <record id="enterprise_job_action" model="ir.actions.act_window">
+         <field name="name">Jobs</field>
+         <field name="type">ir.actions.act_window</field>
+         <field name="res_model">enterprise.job</field>
+         <field name="view_mode">tree,form,kanban</field>
+         <field name="help" type="xml">
+             <p class="o_view_nocontent_smiling_face">
+                 Create your first patient!
+             </p>
+         </field>
+    </record>
+
+    <record id="enterprise_department_action" model="ir.actions.act_window">
+         <field name="name">Departments</field>
+         <field name="type">ir.actions.act_window</field>
+         <field name="res_model">enterprise.department</field>
+         <field name="view_mode">tree,form,kanban</field>
+         <field name="help" type="xml">
+             <p class="o_view_nocontent_smiling_face">
+                 Create your first patient!
+             </p>
+         </field>
+    </record>
+
+
+    <menuitem name="Enterprise Building" id="enterprise_root"/>
+    <menuitem name="Clients" id="enterprise_client_root" parent="enterprise_root" sequence="0"
+              action="enterprise_client_action"/>
+    <menuitem name="Employee" id="enterprise_employee_root" parent="enterprise_root" sequence="1"
+              action="enterprise_employee_action"/>
+    <menuitem name="Jobs" id="enterprise_job_root" parent="enterprise_root" sequence="2"
+              action="enterprise_job_action"/>
+    <menuitem name="Departments" id="enterprise_department_root" parent="enterprise_root" sequence="3"
+              action="enterprise_department_action"/>
+
+  </data>
+</odoo>
