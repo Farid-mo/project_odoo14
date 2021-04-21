@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+
+    <record model="ir.ui.view" id="enterprise_order_tree_view">
+      <field name="name">Order.list.tree</field>
+      <field name="model">enterprise.product.order</field>
+      <field name="arch" type="xml">
+        <tree>
+<!--          <field name="salary"/>-->
+            <!--          <field name="email"/>-->
+            <!--          <field name="content"/>-->
+<!--            <field name="content"/>-->
+<!--            <field name="quantity_info"/>-->
+<!--            <field name="product_id"/>-->
+            <field name="product_sold_by"/>
+<!--            <field name="product_needed_by"/>-->
+<!--            <field name="quantity"/>-->
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="enterprise_order_form_view">
+      <field name="name">Order.list.form</field>
+      <field name="model">enterprise.product.order</field>
+      <field name="arch" type="xml">
+        <form>
+          <group>
+<!--              <field name="content"/>-->
+<!--              <field name="quantity_info"/>-->
+<!--            <field name="salary"/>-->
+<!--            <field name="email"/>-->
+<!--            <field name="content"/>-->
+            <field name="product_sold_by"/>
+<!--            <field name="product_needed_by" />-->
+<!--            <field name="product_id"/>-->
+<!--            <field name="quantity"/>-->
+          </group>
+        </form>
+      </field>
+    </record>
+
+
+  </data>
+</odoo>

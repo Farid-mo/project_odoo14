@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <report
+        id="report_client_info"
+        string="Client Information"
+        model="enterprise.client"
+        report_type="qweb.pdf"
+        name="enterprise.report_client"
+        file="enterprise.report_client"/>
+
+</odoo>
