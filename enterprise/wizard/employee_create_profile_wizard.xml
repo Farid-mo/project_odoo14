@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+                <!-- pop-up wizard : create record  -->
+    <record model="ir.ui.view" id="employee_create_record_form_view_wiz">
+      <field name="name">Employee.create.record.form.view.wiz</field>
+      <field name="model">employee.create.record.wizard</field>
+      <field name="arch" type="xml">
+        <form string="Create Employee">
+            <group>
+                <group>
+                    <field name="f_name" required="1"/>
+                    <field name="l_name" required="1"/>
+                    <field name="phone"/>
+                    <field name="date_start"/>
+                </group>
+                <group>
+                    <field name="job_uid"/>
+                    <field name="department_id"/>
+                </group>
+                <group>
+                    <field name="email"/>
+                    <field name="password" password="True"/>
+                </group>
+                <group>
+                    <field name="client_uid"/>
+                </group>
+            </group>
+            <footer>
+                <button string="Create Employee" type="object" name="create_employee_wizard" />
+                <button string="Cancel" special="cancel" class="btn btn-secondary" />
+            </footer>
+        </form>
+      </field>
+    </record>
+
+
+             <!-- That record used to mae action outside of form profile employee      -->
+    <record id="employee_create_record_action" model="ir.actions.act_window">
+        <field name="name">Create Employee</field>
+        <field name="res_model">employee.create.record.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="enterprise.employee_create_record_form_view_wiz"/>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="model_enterprise_employee"/>
+        <field name="binding_view_types">list,form</field>
+
+    </record>
+
+    <menuitem name="Add New Employee" id="enterprise_employee_create_record"
+              parent="enterprise_employee_root" sequence="0"
+              action="enterprise.employee_create_record_action"/>
+
+
+  </data>
+</odoo>

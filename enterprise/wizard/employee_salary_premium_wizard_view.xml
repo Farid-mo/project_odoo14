@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+                <!-- Make pop-up wizard for password field -->
+    <record model="ir.ui.view" id="employee_salary_update_form_view_wiz">
+      <field name="name">Employee.salary.premium.update.form.view.wiz</field>
+      <field name="model">employee.salary.premium</field>
+      <field name="arch" type="xml">
+        <form string="Employee Salary Premium">
+            <group>
+                <group>
+                    <field name="salary"/>
+                </group>
+            </group>
+            <footer>
+                <!--  The name of button is used as function in wizard.py  -->
+                <button string="Confirm Premium" type="object" name="update_employee_salary_premium" />
+                <button string="Cancel" special="cancel" class="btn btn-secondary" />
+            </footer>
+        </form>
+      </field>
+    </record>
+
+      <!--   use wizard pop-up by an action   -->
+    <record id="employee_salary_premium_update_action" model="ir.actions.act_window">
+        <field name="name">Employee Salary add Premium</field>
+        <field name="res_model">employee.password.update.wiz</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+
+    </record>
+
+
+             <!-- That record used to mae action outside of form profile employee      -->
+    <record id="employee_salary_premium_update_action" model="ir.actions.act_window">
+        <field name="name">Premium Salary for employee</field>
+        <field name="res_model">employee.salary.premium</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="enterprise.employee_salary_update_form_view_wiz"/>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="model_enterprise_employee"/>
+        <field name="binding_view_types">list,form</field>
+
+    </record>
+
+    <menuitem name="Add Premium salary for employee(s)" id="enterprise_employee_salary_premium_update"
+              parent="enterprise_employee_root" sequence="1"
+              action="enterprise.employee_salary_premium_update_action"/>
+
+
+  </data>
+</odoo>

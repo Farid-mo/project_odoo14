@@ -6,7 +6,7 @@
          <field name="name">Clients</field>
          <field name="type">ir.actions.act_window</field>
          <field name="res_model">enterprise.client</field>
-         <field name="view_mode">tree,form,kanban</field>
+         <field name="view_mode">tree,form,kanban,pivot,graph</field>
          <field name="help" type="xml">
              <p class="o_view_nocontent_smiling_face">
                  Create your first patient!
@@ -18,7 +18,7 @@
          <field name="name">Employee</field>
          <field name="type">ir.actions.act_window</field>
          <field name="res_model">enterprise.employee</field>
-         <field name="view_mode">tree,form,kanban</field>
+         <field name="view_mode">tree,form,kanban,pivot,graph</field>
          <field name="help" type="xml">
              <p class="o_view_nocontent_smiling_face">
                  Create your first patient!
@@ -50,16 +50,51 @@
          </field>
     </record>
 
+    <record id="enterprise_product_action" model="ir.actions.act_window">
+         <field name="name">Products</field>
+         <field name="type">ir.actions.act_window</field>
+         <field name="res_model">enterprise.product</field>
+         <field name="view_mode">tree,form,kanban</field>
+         <field name="help" type="xml">
+             <p class="o_view_nocontent_smiling_face">
+                 Create your first patient!
+             </p>
+         </field>
+    </record>
+
+    <record id="enterprise_client_card_action" model="ir.actions.act_window">
+         <field name="name">Cards</field>
+         <field name="type">ir.actions.act_window</field>
+         <field name="res_model">enterprise.client.card</field>
+         <field name="view_mode">tree,form,kanban</field>
+         <field name="help" type="xml">
+             <p class="o_view_nocontent_smiling_face">
+                 Create your first patient!
+             </p>
+         </field>
+    </record>
 
     <menuitem name="Enterprise Building" id="enterprise_root"/>
     <menuitem name="Clients" id="enterprise_client_root" parent="enterprise_root" sequence="0"
               action="enterprise_client_action"/>
-    <menuitem name="Employee" id="enterprise_employee_root" parent="enterprise_root" sequence="1"
-              action="enterprise_employee_action"/>
+    <menuitem name="Employee" id="enterprise_employee_root" parent="enterprise_root" sequence="1"/>
     <menuitem name="Jobs" id="enterprise_job_root" parent="enterprise_root" sequence="2"
               action="enterprise_job_action"/>
     <menuitem name="Departments" id="enterprise_department_root" parent="enterprise_root" sequence="3"
               action="enterprise_department_action"/>
+    <menuitem name="Products" id="enterprise_product_root" parent="enterprise_root" sequence="4"
+              action="enterprise_product_action"/>
+    <menuitem name="Cards" id="enterprise_card_client_root" parent="enterprise_root" sequence="5"
+              action="enterprise_client_card_action"/>
+
+                        <!--  SubMenu     -->
+
+    <!-- Employee    -->
+    <menuitem name="All Employees" id="enterprise_employees" parent="enterprise_employee_root" sequence="0"
+              action="enterprise_employee_action"/>
+    <menuitem name="All Cards" id="enterprise_cards_client" parent="enterprise_card_client_root" sequence="0"
+              action="enterprise_client_card_action"/>
+
 
   </data>
 </odoo>

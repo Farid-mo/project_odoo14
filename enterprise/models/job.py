@@ -4,11 +4,10 @@ from odoo import fields, api, models
 class EmployeeJob(models.Model):
     _name = 'enterprise.job'
     _description = 'Employee jobs'
-    _inherit = 'enterprise.client'
+    # _inherit = 'enterprise.client'
 
     name = fields.Char(string='Jobs')
-    content = fields.Char(string='check')
-    salary = fields.Char(string='salary')
+    # content = fields.Integer(string='check', related='employee_uid.salary')
     employee_uid = fields.One2many(string='employee job',
                                    comodel_name='enterprise.employee',
                                    inverse_name='job_uid')

@@ -15,6 +15,8 @@
           <field name="email"/>
           <field name="password" password="True"/>
           <field name="employee_uid"/>
+          <field name="card_ids"/>
+
         </tree>
       </field>
     </record>
@@ -34,11 +36,59 @@
               <field name="email"/>
               <field name="password" password="True"/>
               <field name="employee_uid"/>
-
+              <field name="card_ids"/>
           </group>
         </form>
       </field>
     </record>
+
+    <record id="client_pivot" model="ir.ui.view">
+            <field name="name">enterprise.client.pivot</field>
+            <field name="model">enterprise.client</field>
+            <field name="arch" type="xml">
+                <graph string="Clients">
+<!--                    <field name="id"/>-->
+                    <field name='gender'/>
+                    <field name='age'/>
+                </graph>
+            </field>
+        </record>
+
+
+    <record id="client_graph" model="ir.ui.view">
+        <field name="name">enterprise.client.graph</field>
+        <field name="model">enterprise.client</field>
+        <field name="arch" type="xml">
+        <pivot string="Clients">
+<!--            <field name="name"/>-->
+<!--            <field name='age'/>-->
+            <field name='gender'/>
+        </pivot>
+        </field>
+    </record>
+
+
+<!--    <record model="ir.ui.view" id="enterprise_client_kanban_view">-->
+<!--      <field name="name">Enterprise Client Kanban view</field>-->
+<!--      <field name="model">enterprise.client</field>-->
+<!--      <field name="arch" type="xml">-->
+<!--      <kanban>-->
+<!--          <field name="id"/>-->
+<!--          <field name="f_name"/>-->
+<!--          <field name="l_name"/>-->
+<!--          <field name="email"/>-->
+<!--          <field name="employee_uid"/>-->
+<!--          <templates>-->
+<!--              <t t-name="kanban-box">-->
+<!--                  <div class="oe_kanban_global_click o_kanban_record_has_image_fill o_enterprise_client_kanban">-->
+<!--                      <t t-if="record.image.raw_value">-->
+<!--                          <div class="o_kanban_image_fill_left d-none d-md-block" t-attf-style="background-image:url"-->
+<!--                      </t>-->
+
+<!--                  </div>-->
+<!--              </t>-->
+<!--          </templates>-->
+<!--      </kanban>-->
 
   </data>
 </odoo>

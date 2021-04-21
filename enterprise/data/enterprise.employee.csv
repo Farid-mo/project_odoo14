@@ -1,0 +1,3 @@
+id,f_name,l_name,salary,email,password,job_uid:id,department_id:id,client_uid:id,product_uid:id
+emp_40,file2,csv,9500,filecsv@gmail.com,csvcsv,job_2,Full-stack,2,product_7
+emp_41,file4,csv2,3800,csvcsv@gmail.fr,file2csv2,job_3,Business Intelligence,1,product_8

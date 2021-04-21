@@ -1,6 +1,6 @@
 id,name
-1, Manager
-2, Doctor
-3,  Nurse
-4,  Maid
-5, Driver
+job_1,Manager
+job_2,Doctor
+job_3,Nurse
+job_4,Maid
+job_5,Driver

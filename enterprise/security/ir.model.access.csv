@@ -1,2 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_enterprise_enterprise,enterprise.enterprise,model_enterprise_enterprise,base.group_user,1,1,1,1
+access_enterprise_enterprise_password,password_update,model_employee_password_update_wiz,base.group_user,1,1,1,1
+access_enterprise_enterprise_salary,salary_update,model_employee_salary_premium,base.group_user,1,1,1,1
+access_employee_record_create_wizard,access_employee_create_record_wizard,model_employee_create_record_wizard,base.group_user,1,1,1,1
+access_create_client_card_wizard,access_create_client_card_wizard,model_create_client_card_wizard,base.group_user,1,1,1,1

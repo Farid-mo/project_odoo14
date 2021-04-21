@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+<!--    <template id="enterprise.report_client_info">-->
+<!--        <t t-call="web.html_container">-->
+<!--            <t t-foreach="docs" t-as="doc">-->
+<!--                <h1>Client Information</h1>-->
+<!--            </t>-->
+<!--        </t>-->
+<!--    </template>-->
+
+    <template id="record_client">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <h2>Client Information</h2>
+                    First name           : <t t-esc="doc.f_name"/><br/>
+                    Last name            : <t t-esc="doc.l_name"/><br/>
+                    Date Of Birth        : <t t-esc="doc.d_birth"/><br/>
+                    Gender               : <t t-esc="doc.gender"/><br/>
+                    Email                : <t t-esc="doc.email"/><br/>
+                    Employee Responsible : <t t-esc="doc.employee_uid"/><br/>
+                </t>
+            </t>
+        </t>
+    </template>
+    <report
+        id="record_client_info"
+        string="Client Information"
+        model="enterprise.client"
+        report_type="qweb-pdf"
+        name="enterprise.record_client"
+        file="enterprise.record_client"/>
+
+
+
+</odoo>

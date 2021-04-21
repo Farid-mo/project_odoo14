@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+                <!-- pop-up wizard : create record  -->
+    <record model="ir.ui.view" id="create_card_client_form_view_wiz">
+      <field name="name">create.card.client.form.view.wiz</field>
+      <field name="model">create.client.card.wizard</field>
+      <field name="arch" type="xml">
+        <form string="Create Card client">
+            <group>
+                <group>
+                    <field name="l_name" required="1"/>
+                </group>
+                <group>
+                    <field name="number_account" required="1"/>
+                    <field name="expiration_date" required="1"/>
+                    <field name="cvv" required="1"/>
+                </group>
+                <group>
+                    <field name="client_ids"/>
+                </group>
+            </group>
+            <footer>
+                <button string="Create Card Client" type="object" name="create_client_card_wizard"/>
+                <button string="Cancel" special="cancel" class="btn btn-secondary" />
+            </footer>
+        </form>
+      </field>
+    </record>
+
+             <!-- That record used to mae action outside of form profile employee      -->
+    <record id="create_client_card_action" model="ir.actions.act_window">
+        <field name="name">Create Card Client</field>
+        <field name="res_model">create.client.card.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="enterprise.create_card_client_form_view_wiz"/>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="model_enterprise_employee"/>
+        <field name="binding_view_types">list,form</field>
+
+    </record>
+
+    <menuitem name="Add New card" id="enterprise_create_client_card"
+              parent="enterprise_card_client_root" sequence="1"
+              action="enterprise.create_client_card_action"/>
+
+
+  </data>
+</odoo>

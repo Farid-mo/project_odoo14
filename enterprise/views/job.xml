@@ -8,9 +8,9 @@
       <field name="arch" type="xml">
         <tree>
           <field name="name"/>
-          <field name="salary"/>
-          <field name="email"/>
-          <field name="content"/>
+<!--          <field name="salary"/>-->
+<!--          <field name="email"/>-->
+<!--          <field name="content"/>-->
           <field name="employee_uid"/>
         </tree>
       </field>
@@ -23,9 +23,9 @@
         <form>
           <group>
               <field name="name"/>
-            <field name="salary"/>
-            <field name="email"/>
-            <field name="content"/>
+<!--            <field name="salary"/>-->
+<!--            <field name="email"/>-->
+<!--            <field name="content"/>-->
             <field name="employee_uid"/>
           </group>
         </form>

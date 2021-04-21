@@ -12,54 +12,82 @@ class EnterpriseEmployee(models.Model):
     # _rec_name = 'f_name'
 
     date_start = fields.Date(string='Date of start')
-    time_working = fields.Char(string='Time of working', compute='_get_time_worked')
+    time_working = fields.Char(string='Time of working',
+                               compute='_get_time_worked')
     salary = fields.Integer(string='Salary')
-    salary_net = fields.Integer(string='salary net', compute='_get_salary')
+    salary_premium = fields.Integer(string='Premium Salary')
+                                #compute='_get_salary')
+    salary_total = fields.Integer(string='Salary total', compute='total_salary')
     department_id = fields.Many2one(string='Department',
                                     comodel_name='enterprise.department')
-    job_uid = fields.Many2one(string='Job', comodel_name='enterprise.job')
-    client_uid = fields.One2many(string='clients', comodel_name='enterprise.client', inverse_name='employee_uid')
+    job_uid = fields.Many2one(string='Job',
+                              comodel_name='enterprise.job')
+    client_uid = fields.One2many(string='clients',
+                                 comodel_name='enterprise.client',
+                                 inverse_name='employee_uid')
+    # product_uid = fields.One2many(string='Products',
+    #                               comodel_name='enterprise.product',
+    #                               inverse_name='employee_uid')
+    # order_id = fields.One2many(string='Order',
+    #                            comodel_name='enterprise.product.order',
+    #                            inverse_name='product_sold_by')
 
+    @api.depends('salary', 'salary_premium')
+    def total_salary(self):
+        for rec in self:
+            if rec.salary and rec.salary_premium:
+                rec.salary_total = rec.salary + rec.salary_premium
+            else:
+                rec.salary_total = rec.salary
+
+    def wiz_open_salary(self):
+        print('wos : ', self.env['ir.actions.act_window']._for_xml_id('enterprise.employee_salary_premium_update_action'))
+
+        return self.env['ir.actions.act_window']._for_xml_id('enterprise.employee_salary_premium_update_action')
+
+    # used for wizard
+    def wiz_open(self):
+        # that return as you see bellow instead the second return
+        print('wo : ', self.env['ir.actions.act_window']._for_xml_id('enterprise.employee_password_update_action'))
+        return self.env['ir.actions.act_window']._for_xml_id('enterprise.employee_password_update_action')
+        # return {'type': 'ir.actions.act_window',
+        #         'res_model': 'employee.password.update.wiz',
+        #         'view_mode': 'form',
+        #         'target': 'new'
+        #         }
+
+    # function used to set value of salary to some employee greater or less then we have declared above
     # @api.model
     # def create(self, values):
-    #     print(self)
-    #     print(values)
-    #     print(values['salary'])
-    #     # values['salary'] = values['salary'] + 100
-    #     if values['salary'] > 5000:
-    #         values['salary'] = values['salary'] - 1000
-    #     email_list = ['@gmail.fr', '@gmail.com', '@hotmail.com',
-    #                   '@hotmail.fr']
-    #     print(values['email'])
-    #     if values['email'].endswith('@hotmail.com'):
-    #         print('yes')
-    #     for i in email_list:
-    #         # if i not in values['email']:
-    #         print(i)
-    #         s = values['email'].endswith(i)
-    #         if True:
-    #             print('yes also')
-    #             # raise ValidationError(_('Error email invalid'))
-    #
+    #     if values['job_uid'] == 2 and values['salary'] < 7000:
+    #         raise ValidationError(f'Error the Doctor job cant have less then 7000 '
+    #                               f'and you past just {values["salary"]} MAD')
+    #     if values['job_uid'] == 1 and values['salary'] < 9500:
+    #         raise ValidationError(f"Error Manager job cant be less then 9500 "
+    #                               f"and you past {values['salary']} MAD")
+    #     if values['job_uid'] == 3 and values['salary'] < 5000:
+    #         raise ValidationError(f"Error of Nurse job cant be less then 5000 "
+    #                               f"and you past {values['salary']} MAD")
+    #     if values['job_uid'] == 4 and values['salary'] < 4000:
+    #         raise ValidationError(f"Error the Maid job cant be less then 4000"
+    #                               f" and you past {values['salary']}")
+    #     if values['job_uid'] == 5 and (values['job_uid'] < 3500 or values['salary'] > 4500):
+    #         raise ValidationError(f"Error the Driver job range of salary is between 3500 MAD and 4500 MAD "
+    #                               f"and you past just {values['salary']} MAD")
+    #     print(values['job_uid'])
     #     rtn = super(EnterpriseEmployee, self).create(values)
-    #     print(rtn)
     #     return rtn
 
-    def write(self, values):
-        print(self)
-        print(values)
-        print(f'salary value before calculation {values["salary"]}')
-        if values['salary'] > 5000:
-            values['salary'] = values['salary'] - 1000
-        print(f'value of salary after calculation {values["salary"]}')
-        rtn = super(EnterpriseEmployee, self).write(values)
-        print(rtn)
-        return rtn
-
-        # @api.onchange('salary')
-    # def _get_salary(self):
-    #     for rec in self:
-    #         print('inside')
+    # def write(self, values):
+    #     # print(self)
+    #     # print(values)
+    #     # print(f'salary value before calculation {values["salary"]}')
+    #     if values['salary'] > 5000:
+    #         values['salary'] = values['salary'] - 1000
+    #     # print(f'value of salary after calculation {values["salary"]}')
+    #     rtn = super(EnterpriseEmployee, self).write(values)
+    #     # print(rtn)
+    #     return rtn
 
     # function used to get lot of data instead _rec_name where we can use just one data
     def name_get(self):
@@ -67,7 +95,7 @@ class EnterpriseEmployee(models.Model):
         for rec in self:
             rec_name = rec.l_name if rec.l_name else 'empty'
             if rec.f_name and rec.department_id.name and rec.job_uid.name:
-                rec_name += f' {rec.f_name} is your {rec.job_uid.name} in {rec.department_id.name} department'
+                rec_name += f' {rec.f_name}, {rec.job_uid.name}, {rec.department_id.name}'
             list_rec_name.append((rec.id, rec_name))
         return list_rec_name
 
@@ -94,20 +122,36 @@ class EnterpriseEmployee(models.Model):
     @api.model
     def name_search(self, name, args=None, operator='ilike', limit=100):
         args = args or []
-        # print(f'name : {name}')
-        # print(f'args : {args}')
-        # print(f'operator : {operator}')
-        # print(f'limit : {limit}')
         if name:
             data = self.search(['|', '|', '|', ('f_name', operator, name), ('l_name', operator, name),
                                 ('email', operator, name), ('phone', operator, name)])
-            # print(data.name_get())
             return data.name_get()
-        # print(self.search([('f_name', operator, name)]+args, limit=limit).name_get())
         return self.search([('f_name', operator, name)]+args, limit=limit).name_get()
 
-
-
+    # @api.model
+    # def create(self, values):
+    #     print(self)
+    #     print(values)
+    #     print(values['salary'])
+    #     # values['salary'] = values['salary'] + 100
+    #     if values['salary'] > 5000:
+    #         values['salary'] = values['salary'] - 1000
+    #     email_list = ['@gmail.fr', '@gmail.com', '@hotmail.com',
+    #                   '@hotmail.fr']
+    #     print(values['email'])
+    #     if values['email'].endswith('@hotmail.com'):
+    #         print('yes')
+    #     for i in email_list:
+    #         # if i not in values['email']:
+    #         print(i)
+    #         s = values['email'].endswith(i)
+    #         if True:
+    #             print('yes also')
+    #             # raise ValidationError(_('Error email invalid'))
+    #
+    #     rtn = super(EnterpriseEmployee, self).create(values)
+    #     print(rtn)
+    #     return rtn
 
     # @api.model
     # def create(self, values):

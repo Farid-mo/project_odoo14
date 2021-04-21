@@ -3,38 +3,36 @@
   <data>
 
     <record model="ir.ui.view" id="enterprise_order_tree_view">
-      <field name="name">Order.list.tree</field>
-      <field name="model">enterprise.product.order</field>
+      <field name="name">Card.list.tree</field>
+      <field name="model">enterprise.client.card</field>
       <field name="arch" type="xml">
         <tree>
-<!--          <field name="salary"/>-->
-            <!--          <field name="email"/>-->
-            <!--          <field name="content"/>-->
-<!--            <field name="content"/>-->
-<!--            <field name="quantity_info"/>-->
-<!--            <field name="product_id"/>-->
-            <field name="product_sold_by"/>
-<!--            <field name="product_needed_by"/>-->
-<!--            <field name="quantity"/>-->
+            <field name="l_name"/>
+            <field name="number_account"/>
+            <field name="expiration_date"/>
+            <field name="cvv"/>
+            <field name="client_ids"/>
         </tree>
       </field>
     </record>
 
     <record model="ir.ui.view" id="enterprise_order_form_view">
-      <field name="name">Order.list.form</field>
-      <field name="model">enterprise.product.order</field>
+      <field name="name">Card.list.form</field>
+      <field name="model">enterprise.client.card</field>
       <field name="arch" type="xml">
         <form>
           <group>
-<!--              <field name="content"/>-->
-<!--              <field name="quantity_info"/>-->
-<!--            <field name="salary"/>-->
-<!--            <field name="email"/>-->
-<!--            <field name="content"/>-->
-            <field name="product_sold_by"/>
-<!--            <field name="product_needed_by" />-->
-<!--            <field name="product_id"/>-->
-<!--            <field name="quantity"/>-->
+             <group>
+                <field name="l_name"/>
+             </group><br/><br/>
+             <group>
+                <field name="number_account"/>
+                <field name="expiration_date"/>
+                <field name="cvv"/>
+            </group>
+            <group>
+              <field name="client_ids"/>
+            </group>
           </group>
         </form>
       </field>

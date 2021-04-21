@@ -1,3 +1,3 @@
 # -*- coding: utf-8 -*-
 
-from . import models, client, employee, job, department
+from . import client, employee, job, department, cardclient, product

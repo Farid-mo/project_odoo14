@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+
+    <record model="ir.ui.view" id="enterprise_product_tree_view">
+      <field name="name">Product.list.tree</field>
+      <field name="model">enterprise.product</field>
+      <field name="arch" type="xml">
+        <tree>
+<!--          <field name="l_name"/>-->
+<!--          <field name="f_name"/>-->
+<!--          <field name="salary"/>-->
+<!--          <field name="email"/>-->
+          <field name="price"/>
+<!--          <field name="quantity"/>-->
+<!--          <field name="price_total"/>-->
+<!--          <field name="employee_uid"/>-->
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="enterprise_product_form_view">
+      <field name="name">Product.List.form</field>
+      <field name="model">enterprise.product</field>
+      <field name="arch" type="xml">
+        <form>
+          <group>
+<!--            <field name="l_name" string="reference" required='0'/>-->
+<!--            <field name="f_name"/>-->
+<!--            <field name="salary"/>-->
+<!--            <field name="email"/>-->
+            <field name="price"/>
+<!--            <field name="quantity"/>-->
+<!--            <field name="price_total"/>-->
+<!--            <field name="employee_uid"/>-->
+          </group>
+        </form>
+      </field>
+    </record>
+
+<!-- Search -->
+<!--    <record model="ir.ui.view" id="Product_search">-->
+<!--      <field name="name">enterprise.product.search</field>-->
+<!--      <field name="model">enterprise.product</field>-->
+<!--      <field name="arch" type="xml">-->
+<!--        <search string="Product search">-->
+<!--            <field name="f_name" filter_domain ="['|', ('f_name','ilike',self),('price', 'ilike', self)]"/>-->
+<!--            <field name="f_name"/>-->
+<!--            <field name="price"/>-->
+<!--            <separator/>-->
+<!--            <group expand="0" string="Group By">-->
+<!--                <filter string="Employee" name="employee" context="{'group_by':'employee_uid'}"/>-->
+<!--            </group>-->
+<!--        </search>-->
+<!--      </field>-->
+<!--    </record>-->
+
+  </data>
+</odoo>
