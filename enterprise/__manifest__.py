@@ -26,8 +26,8 @@
     'data': [
         'security/ir.model.access.csv',
         'views/main.xml',
-        'reports/client_info.xml',
-        'reports/report.xml',
+        'report/client_information_pdf.xml',
+        'report/employee_information_pdf.xml',
         # 'security/ir.model.access.csv',
         'data/enterprise.job.csv',
         'data/enterprise.department.csv',
