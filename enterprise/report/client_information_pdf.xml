@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="report_client" model="ir.actions.report">
+        <field name="name">Client Information</field>
+        <field name="model">enterprise.client</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">enterprise.report_client_view</field>
+        <field name="report_file">enterprise.report_client</field>
+        <field name="binding_model_id" ref="model_enterprise_client"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="report_client_view">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <h2>Client Information</h2>
+                    First name           : <t t-esc="doc.f_name"/><br/>
+                    Last name            : <t t-esc="doc.l_name"/><br/>
+                    Date Of Birth        : <t t-esc="doc.d_birth"/><br/>
+                    Gender               : <t t-esc="doc.gender"/><br/>
+                    Email                : <t t-esc="doc.email"/><br/>
+                    Employee Responsible : <t t-esc="doc.employee_uid.f_name"/> <t t-esc="doc.employee_uid.l_name"/><br/>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>
